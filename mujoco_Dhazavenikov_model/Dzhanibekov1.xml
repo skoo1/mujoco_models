@@ -1,0 +1,25 @@
+<mujoco>
+  <option integrator="RK4" timestep="0.001" gravity="0 0 0" />
+  <compiler angle="radian"/>
+
+  <asset>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb2="0 0 0" rgb1="1 1 1"/>
+    <material name="grid" texture="grid" texrepeat="2 2" texuniform="true" reflectance=".6"/>
+    <mesh name="butterfly_nut" file="butterfly_nut.stl" scale="0.01 0.01 0.01"/>
+  </asset>
+
+  <worldbody>
+    <geom name="ground" type="plane" size="5 5 0.001" pos="0 0 0" material="grid"/>
+
+    <body name="nut" pos="0 0 0.5" euler="0 0 0">
+      <freejoint/>
+      <inertial pos="0 0 0" mass="1.0" diaginertia="0.0008333 0.0011333 0.0013667"/>
+      <geom name="nutbody" type="mesh" mesh="butterfly_nut" rgba="1 .6 .7 1"/>
+    </body>
+  </worldbody>
+
+  <keyframe>
+    <key qpos="0 0 0.5 1 0 0 0 "
+         qvel="0 0 0 0 10 0.01"/>
+  </keyframe>
+</mujoco>
